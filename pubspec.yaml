@@ -1,6 +1,6 @@
 name: flutter_tap_payment
 description: A simple but powerful Tap Payment SDK for flutter.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/Mixpeal/flutter_tap_payment
 
 environment:
