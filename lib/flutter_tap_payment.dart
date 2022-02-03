@@ -87,8 +87,10 @@ class TapPaymentState extends State<TapPayment> {
   @override
   void initState() {
     super.initState();
-    services =
-        TapServices(apiKey: widget.apiKey, paymentData: widget.paymentData);
+    Map formData = widget.paymentData;
+    formData['post'] = {"url": widget.postUrl};
+    formData['redirect'] = {"url": widget.redirectUrl};
+    services = TapServices(apiKey: widget.apiKey, paymentData: formData);
     setState(() {
       navUrl = 'checkout.payments.tap.company';
     });

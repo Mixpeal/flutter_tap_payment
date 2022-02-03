@@ -75,13 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               //     {"id": "480593777", "amount": 2, "currency": "KWD"},
                               //     {"id": "486374777", "amount": 3, "currency": "KWD"}
                               //   ]
-                              // },
-                              "post": {
-                                "url": "http://your_website.com/post_url"
-                              },
-                              "redirect": {
-                                "url": "http://your_website.com/redirect_url"
-                              }
+                              // }
                             },
                             onSuccess: (Map params) async {
                               print("onSuccess: $params");
