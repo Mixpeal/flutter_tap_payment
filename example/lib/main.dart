@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => TapPayment(
-                            apiKey: "sk_test_YWxMzuSB6I5QXjDOHdwe849Z",
+                            apiKey: "YOUR_API_KEY",
                             redirectUrl: "http://your_website.com/redirect_url",
                             postUrl: "http://your_website.com/post_url",
                             paymentData: const {

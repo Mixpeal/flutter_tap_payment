@@ -43,20 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
-  crypto:
-    dependency: transitive
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -95,13 +81,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.3"
-  http_auth:
-    dependency: "direct main"
-    description:
-      name: http_auth
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   http_parser:
     dependency: transitive
     description:
