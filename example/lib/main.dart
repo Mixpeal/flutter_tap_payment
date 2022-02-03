@@ -42,14 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => TapPayment(
-                            sandboxMode: true,
                             apiKey: "sk_test_YWxMzuSB6I5QXjDOHdwe849Z",
-                            customerName: "Jane Foster",
-                            customerPhone: "09683876",
-                            description: "Some description",
-                            amount: "123",
-                            currency: "KWD",
-                            source: "src_kw.knet",
                             redirectUrl: "http://your_website.com/redirect_url",
                             postUrl: "http://your_website.com/post_url",
                             paymentData: const {
@@ -75,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   "number": "50000000"
                                 }
                               },
-                              "merchant": {"id": ""},
+                              // "merchant": {"id": ""},
                               "source": {"id": "src_card"},
                               // "destinations": {
                               //   "destination": [

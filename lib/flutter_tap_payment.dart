@@ -13,17 +13,8 @@ import 'src/errors/network_error.dart';
 
 class TapPayment extends StatefulWidget {
   final Function onSuccess, onError;
-  final String apiKey,
-      customerName,
-      customerPhone,
-      description,
-      amount,
-      currency,
-      source,
-      redirectUrl,
-      postUrl;
+  final String apiKey, redirectUrl, postUrl;
   final Map paymentData;
-  final bool sandboxMode;
 
   const TapPayment({
     Key? key,
@@ -31,17 +22,9 @@ class TapPayment extends StatefulWidget {
     required this.onError,
     //
     required this.apiKey,
-    required this.customerName,
-    required this.customerPhone,
-    required this.description,
-    required this.amount,
-    required this.currency,
-    required this.source,
     required this.redirectUrl,
     required this.postUrl,
     required this.paymentData,
-    //
-    this.sandboxMode = false,
   }) : super(key: key);
 
   @override
@@ -104,10 +87,8 @@ class TapPaymentState extends State<TapPayment> {
   @override
   void initState() {
     super.initState();
-    services = TapServices(
-        apiKey: widget.apiKey,
-        sandboxMode: widget.sandboxMode,
-        paymentData: widget.paymentData);
+    services =
+        TapServices(apiKey: widget.apiKey, paymentData: widget.paymentData);
     setState(() {
       navUrl = 'checkout.payments.tap.company';
     });

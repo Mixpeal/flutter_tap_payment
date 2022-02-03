@@ -15,7 +15,7 @@ A lightweight [Tap Payment](https://www.tap.company/) SDK for flutter.
 
 ## Features
 
-It utilizes [Flutter Webview](https://pub.dev/packages/webview_flutter_x5), to complete the payment process... "It's a Simple Spell But Quite Unbreakable".
+It utilizes [Flutter Webview](https://pub.dev/packages/webview_flutter), to complete the payment process... "It's a Simple Spell But Quite Unbreakable".
 
 
 ## Usage

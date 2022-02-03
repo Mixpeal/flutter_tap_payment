@@ -6,15 +6,11 @@ import 'package:http/http.dart' as http;
 
 class TapServices {
   final String apiKey;
-  final bool sandboxMode;
   final Map paymentData;
   String basePath = "https://api.tap.company/";
   String version = "v2";
 
-  TapServices(
-      {required this.apiKey,
-      required this.sandboxMode,
-      required this.paymentData});
+  TapServices({required this.apiKey, required this.paymentData});
 
   sendPayment() async {
     String domain = basePath + version + "/charges";
