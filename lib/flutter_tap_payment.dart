@@ -50,7 +50,8 @@ class TapPaymentState extends State<TapPayment> {
     });
     try {
       Map getPayment = await services.sendPayment();
-      if (getPayment['message']?['transaction']?["url"] != null) {
+      if (getPayment['error'] == false &&
+          getPayment['message']?['transaction']?["url"] != null) {
         setState(() {
           checkoutUrl = getPayment['message']['transaction']["url"].toString();
           navUrl = getPayment['message']['transaction']["url"].toString();
@@ -87,10 +88,13 @@ class TapPaymentState extends State<TapPayment> {
   @override
   void initState() {
     super.initState();
-    Map formData = widget.paymentData;
+    var formData = {};
+    //formData = widget.paymentData;
     formData['post'] = {"url": widget.postUrl};
     formData['redirect'] = {"url": widget.redirectUrl};
-    services = TapServices(apiKey: widget.apiKey, paymentData: formData);
+    services = TapServices(
+        apiKey: widget.apiKey,
+        paymentData: {...widget.paymentData, ...formData});
     setState(() {
       navUrl = 'checkout.payments.tap.company';
     });
