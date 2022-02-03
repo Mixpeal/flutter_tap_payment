@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-A simple but powerful Paypal SDK for flutter.
+A simple but powerful [Tap Payment](https://www.tap.company/) SDK for flutter.
 
 ## Features
 
