@@ -17,6 +17,7 @@ class CompletePayment extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CompletePaymentState createState() => _CompletePaymentState();
 }
 
@@ -79,6 +80,7 @@ class _CompletePaymentState extends State<CompletePayment> {
             loading = false;
             loadingError = false;
           });
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
         } else {
           Map data = resp['data'];
@@ -88,6 +90,7 @@ class _CompletePaymentState extends State<CompletePayment> {
             loading = false;
             loadingError = false;
           });
+          // ignore: use_build_context_synchronously
           Navigator.pop(context);
         }
       } else {
@@ -99,6 +102,7 @@ class _CompletePaymentState extends State<CompletePayment> {
           });
         } else {
           await widget.onError(resp['data']);
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pop();
         }
       }
@@ -119,8 +123,8 @@ class _CompletePaymentState extends State<CompletePayment> {
     return Scaffold(
       body: Container(
         child: loading
-            ? Column(
-                children: const [
+            ? const Column(
+                children: [
                   Expanded(
                     child: Center(
                       child: SpinKitFadingCube(

@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TapServices {
@@ -13,27 +14,27 @@ class TapServices {
   TapServices({required this.apiKey, required this.paymentData});
 
   sendPayment() async {
-    String domain = basePath + version + "/charges";
+    String domain = "$basePath$version/charges";
     try {
       var response = await http
           .post(Uri.parse(domain), body: jsonEncode(paymentData), headers: {
-        "Authorization": "Bearer " + apiKey,
+        "Authorization": "Bearer $apiKey",
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
       });
       var body = json.decode(response.body);
       if (response.statusCode == 200) {
-        print(body);
+        debugPrint(body);
         return {'error': false, 'message': body};
       } else {
-        print(body);
+        debugPrint(body);
         return {
           'error': true,
           'message': "${body["errors"]?[0]?["description"]}"
         };
       }
     } catch (e) {
-      print(e);
+      debugPrint("$e");
       return {
         'error': true,
         'message': "Unable to proceed, check your internet connection."
@@ -42,11 +43,11 @@ class TapServices {
   }
 
   confirmPayment(tapId) async {
-    String domain = basePath + version + "/charges/$tapId";
+    String domain = "$basePath$version/charges/$tapId";
     try {
       var response = await http.get(Uri.parse(domain), headers: {
         "content-type": "application/json",
-        'Authorization': 'Bearer ' + apiKey
+        'Authorization': 'Bearer $apiKey'
       });
 
       final body = jsonDecode(response.body);
