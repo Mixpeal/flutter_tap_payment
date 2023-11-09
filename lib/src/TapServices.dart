@@ -25,7 +25,7 @@ class TapServices {
       var body = json.decode(response.body);
       if (response.statusCode == 200) {
         debugPrint(body);
-        return {'error': false, 'message': body};
+        return {'error': false, 'message': body["transaction"]?["url"]};
       } else {
         debugPrint(body);
         return {
