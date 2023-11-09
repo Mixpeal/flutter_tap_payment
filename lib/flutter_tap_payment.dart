@@ -52,10 +52,10 @@ class TapPaymentState extends State<TapPayment> {
     try {
       Map getPayment = await services.sendPayment();
       if (getPayment['error'] == false &&
-          getPayment['message']?['transaction']?["url"] != null) {
+          getPayment['message'] != null) {
         setState(() {
-          checkoutUrl = getPayment['message']['transaction']["url"].toString();
-          navUrl = getPayment['message']['transaction']["url"].toString();
+          checkoutUrl = getPayment['message'].toString();
+          navUrl = getPayment['message'].toString();
           loading = false;
           pageLoading = false;
           loadingError = false;
