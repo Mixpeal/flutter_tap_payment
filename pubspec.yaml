@@ -3,6 +3,7 @@ description: A simple but powerful Tap Payment SDK for flutter.
 version: 0.2.0
 homepage: https://github.com/Mixpeal/flutter_tap_payment
 
+
 environment:
   sdk: '>=3.0.1 <4.0.0'
   flutter: ">=1.17.0"
