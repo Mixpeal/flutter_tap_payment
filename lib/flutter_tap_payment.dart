@@ -1,5 +1,6 @@
 library flutter_tap_payment;
 
+import 'dart:convert';
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_tap_payment/src/screens/complete_payment.dart';
@@ -50,18 +51,18 @@ class TapPaymentState extends State<TapPayment> {
       loading = true;
     });
     try {
-      Map getPayment = await services.sendPayment();
+      Map<String,dynamic>  getPayment = await services.sendPayment();
+      final data = json.decode(getPayment['message']);
       if (getPayment['error'] == false &&
-          getPayment['message']?['transaction']?["url"] != null) {
+          data?['transaction']?["url"] != null) {
         setState(() {
-          checkoutUrl = getPayment['message']['transaction']["url"].toString();
-          navUrl = getPayment['message']['transaction']["url"].toString();
+          checkoutUrl = data['transaction']["url"].toString();
+          navUrl = data['transaction']["url"].toString();
           loading = false;
           pageLoading = false;
           loadingError = false;
         });
         _controller.loadRequest(Uri.parse(checkoutUrl));
-
       } else {
         widget.onError(getPayment);
         setState(() {
@@ -259,7 +260,9 @@ class TapPaymentState extends State<TapPayment> {
           body: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: loading || (checkoutUrl == 'https://tap.company' && loadingError == false)
+            child: loading ||
+                    (checkoutUrl == 'https://tap.company' &&
+                        loadingError == false)
                 ? const Column(
                     children: [
                       Expanded(
