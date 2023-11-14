@@ -1,40 +1,39 @@
 // ignore_for_file: file_names
-
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class TapServices {
   final String apiKey;
-  final Map paymentData;
+  final Map<String,dynamic> paymentData;
   String basePath = "https://api.tap.company/";
   String version = "v2";
-
   TapServices({required this.apiKey, required this.paymentData});
-
-  sendPayment() async {
-    String domain = "$basePath$version/charges";
+  Future<Map<String, dynamic>> sendPayment() async {
+    Uri domain = Uri.parse("$basePath$version/charges/");
     try {
-      var response = await http
-          .post(Uri.parse(domain), body: jsonEncode(paymentData), headers: {
-        "Authorization": "Bearer $apiKey",
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=UTF-8',
-      });
+      final headers = {
+        'Authorization': 'Bearer $apiKey',
+        'accept': 'application/json',
+        'content-type': 'application/json',
+      };
+      var data = jsonEncode(paymentData);
+      final response = await http.post(domain, headers: headers, body: data);
+      final status = response.statusCode;
       var body = json.decode(response.body);
-      if (response.statusCode == 200) {
-        debugPrint(body);
-        return {'error': false, 'message': body};
+      if (status == 200) {
+        // debugPrint("STATUS CODE: $status");
+        // debugPrint("$body");
+        return {'error': false, 'message': response.body};
       } else {
-        debugPrint(body);
+        // debugPrint(body);
         return {
           'error': true,
           'message': "${body["errors"]?[0]?["description"]}"
         };
       }
     } catch (e) {
-      debugPrint("$e");
+      // debugPrint("$e");
       return {
         'error': true,
         'message': "Unable to proceed, check your internet connection."
@@ -49,7 +48,6 @@ class TapServices {
         "content-type": "application/json",
         'Authorization': 'Bearer $apiKey'
       });
-
       final body = jsonDecode(response.body);
       if (response.statusCode == 200) {
         return {'error': false, 'message': "Confirmed", 'data': body};
